@@ -1,21 +1,12 @@
-import React, { useState } from "react";
-import {
-  AutoComplete,
-  Button,
-  Cascader,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Select,
-} from "antd";
-import { LoginOutlined } from "@ant-design/icons";
+import { Button, Card, Divider, Form, Input, Typography } from "antd";
+import { PlusOutlined, UserOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
+import Social from "../Social/Social";
+import "./SignIn.css";
+const { Title, Text, Link } = Typography;
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -34,18 +25,7 @@ const formItemLayout = {
     },
   },
 };
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+
 const SignIn = () => {
   const { signIn } = useAuth();
   const location = useLocation();
@@ -68,62 +48,113 @@ const SignIn = () => {
   };
 
   return (
-    <Form
-      {...formItemLayout}
-      form={form}
-      name="register"
-      onFinish={onFinish}
+    <div
       style={{
-        maxWidth: 550,
+        display: "grid",
+        placeItems: "center",
+        minHeight: "90vh",
       }}
-      scrollToFirstError
     >
-      <Form.Item
-        name="email"
-        label="E-mail"
-        rules={[
-          {
-            type: "email",
-            message: "The input is not valid E-mail!",
-          },
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
-      >
-        <Input placeholder="E-mail" size="large" />
-      </Form.Item>
-
-      <Form.Item
-        name="password"
-        label="Password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password placeholder="Password" size="large" />
-      </Form.Item>
-
-      <Form.Item {...tailFormItemLayout}>
-        <Button
-          shape="round"
+      <Card >
+        <div
+          id="form-container"
           style={{
-            width: "100%",
-            paddingTop: 15,
-            paddingBottom: 35,
+            minHeight: "fit-content",
+            paddingBlock: 50,
+            borderRadius: 15,
+            textAlign: "center",
           }}
-          type="primary"
-          htmlType="submit"
         >
-          <LoginOutlined />
-          Sign in
-        </Button>
-      </Form.Item>
-    </Form>
+          <Title style={{ textAlign: "center" }} level={3}>
+            Sign in to your account
+          </Title>
+          <Form
+            id="form"
+            {...formItemLayout}
+            form={form}
+            style={{
+              display: "grid",
+              gap: 5,
+              marginTop: 40,
+              paddingInline: 10,
+            }}
+            name="register"
+            onFinish={onFinish}
+            scrollToFirstError
+          >
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  type: "email",
+                  message: "The input is not valid E-mail!",
+                },
+                {
+                  required: true,
+                  message: "Please input your E-mail!",
+                },
+              ]}
+            >
+              <Input placeholder="E-mail" size="large" />
+            </Form.Item>
+
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password placeholder="Password" size="large" />
+            </Form.Item>
+
+            <Form.Item>
+              <Button
+                shape="round"
+                style={{
+                  width: "100%",
+                  paddingTop: 15,
+                  paddingBottom: 35,
+                }}
+                type="primary"
+                htmlType="submit"
+              >
+                <UserOutlined />
+                Sign in
+              </Button>
+            </Form.Item>
+          </Form>
+          <Divider style={{ paddingInline: 60 }} plain>
+            Or
+          </Divider>
+          <Social />
+
+          <Text style={{ display: "block", marginBlock: 15 }} level={5}>
+            Don't have an account?
+          </Text>
+          <Link href="/SignUp">
+            {" "}
+            <Button
+              id="button"
+              shape="round"
+              style={{
+                width: "350px",
+                paddingTop: 12,
+                paddingBottom: 35,
+                backgroundColor: "#09bc8a",
+              }}
+              type="primary"
+              htmlType="submit"
+            >
+              <PlusOutlined />
+              Sign Up Now
+            </Button>
+          </Link>
+        </div>
+      </Card>
+    </div>
   );
 };
 export default SignIn;

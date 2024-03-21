@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:3000",
-  // baseURL:'https://handyjobs-server.vercel.app'
+  // baseURL:'https://eternal-match-server.vercel.app'
 });
 const useAxiosSecure = () => {
   const navigate = useNavigate();
