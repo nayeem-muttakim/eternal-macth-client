@@ -1,12 +1,12 @@
 import { Button, Card, Divider, Form, Input, Typography } from "antd";
 import { PlusOutlined, UserOutlined } from "@ant-design/icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
 import Social from "../Social/Social";
 import "./SignIn.css";
-const { Title, Text, Link } = Typography;
+const { Title, Text } = Typography;
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -134,7 +134,7 @@ const SignIn = () => {
           <Text style={{ display: "block", marginBlock: 15 }} level={5}>
             Don't have an account?
           </Text>
-          <Link href="/SignUp">
+          <Link to="/SignUp">
             {" "}
             <Button
               id="button"

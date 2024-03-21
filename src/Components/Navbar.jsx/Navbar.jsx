@@ -37,17 +37,14 @@ function Navbar() {
   return (
     <nav
       style={{
-        position: "sticky",
+        position: "static",
         backgroundColor: "#ffe5ec",
       }}
     >
       <div id="container" style={{ maxWidth: "1300px", marginInline: "auto" }}>
         <div id="navbar">
           <div id="menu-icon">
-            <MenuOutlined
-              style={{ fontSize: "20px" }}
-              onClick={handleOpen}
-            />
+            <MenuOutlined style={{ fontSize: "20px" }} onClick={handleOpen} />
           </div>
           <Typography id="logo" variant="h6" component="a" href="/">
             <img src={logo} alt="logo" style={{ width: 250, height: 100 }} />

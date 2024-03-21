@@ -1,0 +1,21 @@
+@media screen and (min-width: 850px) {
+  #banner {
+    margin-inline: 12%;
+    margin-block: 10px;
+  }
+}
+@media screen and (min-width: 1150px) {
+  #banner {
+    margin-inline: 15%;
+  }
+}
+@media screen and (min-width: 1350px) {
+  #banner {
+    margin-inline: 20%;
+  }
+}
+@media screen and (min-width: 1550px) {
+  #banner {
+    margin-inline: 25%;
+  }
+}

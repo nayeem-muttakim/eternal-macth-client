@@ -1,12 +1,12 @@
 import { Button, Card, Divider, Form, Input, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
 import Social from "../Social/Social";
 // import "./SignUp.css";
-const { Title, Text, Link } = Typography;
+const { Title, Text } = Typography;
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -84,7 +84,7 @@ const SignUp = () => {
           onFinish={onFinish}
           scrollToFirstError
         >
-          {/* <Form.Item
+          <Form.Item
             name="name"
             rules={[
               {
@@ -94,7 +94,7 @@ const SignUp = () => {
             ]}
           >
             <Input placeholder="Name" size="large" />
-          </Form.Item> */}
+          </Form.Item>
           <Form.Item
             name="email"
             rules={[
@@ -147,7 +147,7 @@ const SignUp = () => {
         <Text style={{ display: "block", marginTop: 15 }} level={5}>
           Have an existing account?
         </Text>
-        <Link href="/SignIn" style={{ textDecoration: "none" }}>
+        <Link to="/SignIn" style={{ textDecoration: "none" }}>
           Sign in to your account
         </Link>
       </div>
