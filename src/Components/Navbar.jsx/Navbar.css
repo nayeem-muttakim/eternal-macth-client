@@ -1,0 +1,32 @@
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 10px;
+}
+
+#signIn {
+  background-color: #5aa9e6;
+  color: beige;
+  font-size: 15px;
+  font-weight: 400;
+}
+#signIn:hover {
+  background-color: #ffafcc;
+  border-color: #ffafcc;
+  color: black;
+}
+#navs {
+  display: none;
+}
+@media screen and (min-width: 900px) {
+  #menu-icon {
+    display: none;
+  }
+
+  #navs {
+    display: flex;
+    margin-right: 200px;
+    gap: 20px;
+  }
+}
