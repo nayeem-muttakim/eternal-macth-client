@@ -4,9 +4,13 @@
   margin-block: 10px;
   padding-inline: 12%;
 }
-.card{
-    width: 300px;
-    background-color: #fff0f3;
+.card {
+  width: 300px;
+  background-color: #fff0f3;
+  transition: 0.5s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @media screen and (min-width: 700px) {
   #process {
