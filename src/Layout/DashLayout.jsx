@@ -1,12 +1,12 @@
-import React from "react";
 import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+  EditTwoTone,
+  FileTextTwoTone,
+  HeartTwoTone,
+  PullRequestOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import { Outlet } from "react-router-dom";
-const { Header, Content, Footer, Sider } = Layout;
+import { Link, Outlet } from "react-router-dom";
+const { Content, Sider } = Layout;
 
 const DashLayout = () => {
   const {
@@ -15,34 +15,45 @@ const DashLayout = () => {
   return (
     <Layout>
       <Sider
+        style={{ backgroundColor: "white" }}
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
-          console.log(broken);
+          // console.log(broken);
         }}
         onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+          // console.log(collapsed, type);
         }}
       >
         <Menu
           mode="inline"
-          style={{ minHeight: "82vh" }}
-          defaultSelectedKeys={["1"]}
+          style={{
+            position: "sticky",
+            top: 105,
+            zIndex: 2,
+            overflow: "hidden",
+          }}
+          defaultSelectedKeys={"1"}
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
+              icon: <EditTwoTone twoToneColor="#eb2f96" />,
+              label: <Link to="">Edit Biodata</Link>,
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              icon: <FileTextTwoTone twoToneColor="#eb2f96" />,
+              label: <Link to="view-biodata">View Biodata</Link>,
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
+              icon: <PullRequestOutlined style={{ color: "#eb2f96" }} />,
+              label: <Link to="my-contact-request">My Contact Request</Link>,
+            },
+            {
+              key: "4",
+              icon: <HeartTwoTone twoToneColor="#eb2f96" />,
+              label: <Link to="fav-biodata">Favourite Biodata</Link>,
             },
           ]}
         />
@@ -56,7 +67,7 @@ const DashLayout = () => {
           <div
             style={{
               padding: 24,
-
+              minHeight: "65vh",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}

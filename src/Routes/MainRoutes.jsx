@@ -6,6 +6,8 @@ import MainLayout from "../Layout/MainLayout";
 import SignUp from "../Authentications/SignUp/SignUp";
 import HomePage from "../Components/HomePage";
 import DashLayout from "../Layout/DashLayout";
+import EditBio from "../DashBoard/EditBio/EditBio";
+import PrivateRoute from "../Private/PrivateRoute";
 
 export const MainROutes = createBrowserRouter([
   {
@@ -27,11 +29,15 @@ export const MainROutes = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashLayout />,
+        element: (
+          <PrivateRoute>
+            <DashLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
-            path: "dash",
-            element: <div>dis</div>,
+            path: "",
+            element: <EditBio />,
           },
         ],
       },

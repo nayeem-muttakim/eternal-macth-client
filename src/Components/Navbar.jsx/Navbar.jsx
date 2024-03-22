@@ -1,6 +1,6 @@
-import { Button, Drawer, Menu, Popover, Tooltip, Typography } from "antd";
+import { Button, Drawer, Menu, Popover, Typography } from "antd";
 import * as React from "react";
-import { MenuOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 import "./Navbar.css";
 import logo from "/logo.png";
 import User from "/user.png";

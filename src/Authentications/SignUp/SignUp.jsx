@@ -36,7 +36,6 @@ const SignUp = () => {
   const onFinish = async (values) => {
     const name = values.name;
     const email = values.email;
-    const number = values.number;
     const password = values.password;
     const toasted = toast.loading("Signing Up");
 
@@ -48,7 +47,7 @@ const SignUp = () => {
       const userInfo = {
         name: name,
         email: email,
-        number: number,
+
         role: "user",
         membership: false,
       };
@@ -58,15 +57,6 @@ const SignUp = () => {
     } catch (err) {
       console.log(err);
     }
-
-    // signUp(email, password)
-    //   .then((res) => {
-    //     toast.success("Signed up", { id: toasted });
-    //     navigate("/");
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Invalid Email or Password", { id: toasted });
-    //   });
   };
 
   return (
@@ -115,21 +105,6 @@ const SignUp = () => {
               ]}
             >
               <Input placeholder="Name" size="large" />
-            </Form.Item>
-            <Form.Item
-              name="number"
-              rules={[
-                {
-                  type: "text",
-                  message: "The input is not valid Number!",
-                },
-                {
-                  required: true,
-                  message: "Please input your Contact no",
-                },
-              ]}
-            >
-              <Input placeholder="Contact no." size="large" />
             </Form.Item>
             <Form.Item
               name="email"
