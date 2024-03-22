@@ -26,6 +26,7 @@ const Social = () => {
           email: res?.user?.email,
           name: res?.user?.displayName,
           role: "user",
+          membership:false
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           toast.success("Signed In", { id: toasted });

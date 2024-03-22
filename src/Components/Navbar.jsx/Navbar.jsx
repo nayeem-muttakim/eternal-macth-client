@@ -37,7 +37,10 @@ function Navbar() {
   return (
     <nav
       style={{
-        position: "static",
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
+        overflow: "hidden",
         backgroundColor: "#ffe5ec",
       }}
     >

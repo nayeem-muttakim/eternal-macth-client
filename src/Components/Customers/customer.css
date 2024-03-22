@@ -1,4 +1,4 @@
-#container {
+#counter {
   display: grid;
   gap: 15px;
   margin-block: 10px;
@@ -9,20 +9,20 @@
   background-color: #fff0f3;
 }
 @media screen and (min-width: 700px) {
-  #container {
+  #counter {
     grid-template-columns: repeat(2, 1fr);
     padding-inline: 10%;
   }
 }
 
 @media screen and (min-width: 1000px) {
-  #container {
+  #counter {
     grid-template-columns: repeat(3, 1fr);
     padding-inline: 3%;
   }
 }
 @media screen and (min-width: 1250px) {
-  #container {
+  #counter {
     grid-template-columns: repeat(4, 1fr);
     padding-inline: 15%;
   }
