@@ -2,28 +2,32 @@ import {
   EditTwoTone,
   FileTextTwoTone,
   HeartTwoTone,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
   PullRequestOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
+import { Button, Layout, Menu, theme } from "antd";
+import { Header } from "antd/es/layout/layout";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 const { Content, Sider } = Layout;
 
 const DashLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
     <Layout>
       <Sider
-        style={{ backgroundColor: "white" }}
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          // console.log(broken);
+        style={{
+          backgroundColor: "white",
+          position: "sticky",
         }}
-        onCollapse={(collapsed, type) => {
-          // console.log(collapsed, type);
-        }}
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
       >
         <Menu
           mode="inline"
@@ -38,7 +42,7 @@ const DashLayout = () => {
             {
               key: "1",
               icon: <EditTwoTone twoToneColor="#eb2f96" />,
-              label: <Link to="">Edit Biodata</Link>,
+              label: <Link to="edit-biodata">Edit Biodata</Link>,
             },
             {
               key: "2",
@@ -59,6 +63,29 @@ const DashLayout = () => {
         />
       </Sider>
       <Layout>
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+
+            position: "sticky",
+            top: 105,
+            zIndex: 2,
+            overflow: "hidden",
+          }}
+        >
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: "16px",
+              width: 50,
+              height: 50,
+            }}
+          />
+         
+        </Header>
         <Content
           style={{
             margin: "15px",

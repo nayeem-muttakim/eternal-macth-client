@@ -36,7 +36,7 @@ export const MainROutes = createBrowserRouter([
         ),
         children: [
           {
-            path: "",
+            path: "edit-biodata",
             element: <EditBio />,
           },
         ],
