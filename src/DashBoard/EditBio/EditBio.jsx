@@ -3,31 +3,41 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const EditBio = () => {
   const { user } = useAuth();
+  const email = user?.email;
   const axiosSecure = useAxiosSecure();
-
-  const { data: myBiodata = {}, refetch } = useQuery({
-    queryKey: ["myBiodata"],
+  const navigate = useNavigate();
+  const [id, setId] = useState(0);
+  const { data: myBiodata = {} } = useQuery({
+    queryKey: ["myBiodata", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure(`/biodata/mine?email=${user?.email}`);
+      const res = await axiosSecure(`/biodata/mine/${email}`);
       return res.data;
     },
   });
 
+  // get previous biodata id
+  useEffect(() => {
+    axiosSecure("/biodatas").then((res) => {
+      setId(res.data[res.data.length - 1].id);
+    });
+  }, [axiosSecure, id]);
+
   const onFinish = (values) => {
-    const toasted = toast.loading("Publishing Biodata");
-    const biodata = { id: 1, ...values };
-    // console.log({ ...values, id: 1 });
+    const biodata = { id: id + 1, ...values };
+
     if (myBiodata) {
       axiosSecure
-        .patch("/biodatas", biodata)
+        .patch(`/biodata/mine?email=${email}`, { ...values })
         .then((res) => {
-          if (res.data.insertedId) {
+          if (res.data.modifiedCount) {
             console.log(res.data);
-            toast.success("Biodata Published", { id: toasted });
-            refetch();
+            toast.success("Biodata Published");
+            navigate("/dashboard/view-biodata");
           }
         })
         .catch((err) => {
@@ -38,9 +48,8 @@ const EditBio = () => {
         .post("/biodatas", biodata)
         .then((res) => {
           if (res.data.insertedId) {
-            console.log(res.data);
-            toast.success("Biodata Published", { id: toasted });
-            refetch();
+            toast.success("Biodata Published");
+            navigate("/dashboard/view-biodata");
           }
         })
         .catch((err) => {
@@ -55,11 +64,26 @@ const EditBio = () => {
 
   return (
     <Form
-      style={{ maxWidth: 500 }}
+      style={{ maxWidth: 500, marginInline: "auto" }}
       name="basic"
       initialValues={{
-        remember: true,
-        email: user?.email,
+        email: email,
+        type: myBiodata?.type,
+        name: myBiodata?.name,
+        birthdate: myBiodata?.birthdate,
+        height: myBiodata?.height,
+        weight: myBiodata?.weight,
+        age: myBiodata?.age,
+        occupation: myBiodata?.occupation,
+        race: myBiodata?.race,
+        father: myBiodata?.father,
+        mother: myBiodata?.mother,
+        permanent_division: myBiodata?.permanent_division,
+        present_division: myBiodata?.present_division,
+        partner_height: myBiodata?.partner_height,
+        partner_weight: myBiodata?.partner_weight,
+        partner_age: myBiodata?.partner_age,
+        invoice: myBiodata?.invoice,
       }}
       layout="vertical"
       onFinish={onFinish}
@@ -77,7 +101,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="Male">Male</Select.Option>
           <Select.Option value="Female">Female</Select.Option>
         </Select>
@@ -93,7 +117,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Input variant="filled" />
+        <Input size="large" />
       </Form.Item>
       {/* birthdate */}
       <Form.Item
@@ -106,7 +130,7 @@ const EditBio = () => {
         name={"birthdate"}
         label="Date of Birth"
       >
-        <Input type="date" variant="filled" />
+        <Input type="text" placeholder="DD-MM-YYYY" size="large" />
       </Form.Item>
       {/* height */}
       <Form.Item
@@ -119,7 +143,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="below 4 ft">Below 4 ft </Select.Option>
           <Select.Option value="4'">4'</Select.Option>
           <Select.Option value="4'1">4'1"</Select.Option>
@@ -141,6 +165,7 @@ const EditBio = () => {
           <Select.Option value="5'5">5'5"</Select.Option>
           <Select.Option value="5'6">5'6"</Select.Option>
           <Select.Option value="5'7">5'7"</Select.Option>
+          <Select.Option value="5'8">5'8"</Select.Option>
           <Select.Option value="5'9">5'9"</Select.Option>
           <Select.Option value="5'10">5'10"</Select.Option>
           <Select.Option value="5'11">5'11"</Select.Option>
@@ -171,7 +196,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="below 30 kg">Below 30 kg </Select.Option>
           <Select.Option value="31kg">31kg</Select.Option>
           <Select.Option value="32kg">32kg</Select.Option>
@@ -257,7 +282,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Input variant="filled" type="number" />
+        <Input size="large" type="number" />
       </Form.Item>
       {/* occupation */}
       <Form.Item
@@ -270,7 +295,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="Teacher">Teacher</Select.Option>
           <Select.Option value="Doctor">Doctor</Select.Option>
           <Select.Option value="Engineer">Engineer</Select.Option>
@@ -295,7 +320,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="Black">Black</Select.Option>
           <Select.Option value="Brown">Brown</Select.Option>
           <Select.Option value="White">White</Select.Option>
@@ -312,7 +337,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Input variant="filled" />
+        <Input size="large" />
       </Form.Item>
       {/* mother name */}
       <Form.Item
@@ -325,11 +350,11 @@ const EditBio = () => {
           },
         ]}
       >
-        <Input variant="filled" />
+        <Input size="large" />
       </Form.Item>
       {/* permanent division */}
       <Form.Item
-        name="permanent-division"
+        name="permanent_division"
         label="Permanent Division"
         rules={[
           {
@@ -338,7 +363,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="Dhaka">Dhaka</Select.Option>
           <Select.Option value="Chattagram">Chattagram</Select.Option>
           <Select.Option value="Rangpur">Rangpur</Select.Option>
@@ -350,7 +375,7 @@ const EditBio = () => {
       </Form.Item>
       {/* present division */}
       <Form.Item
-        name="present-division"
+        name="present_division"
         label="Present Division"
         rules={[
           {
@@ -359,7 +384,7 @@ const EditBio = () => {
           },
         ]}
       >
-        <Select variant="filled">
+        <Select size="large">
           <Select.Option value="Dhaka">Dhaka</Select.Option>
           <Select.Option value="Chattagram">Chattagram</Select.Option>
           <Select.Option value="Rangpur">Rangpur</Select.Option>
@@ -372,7 +397,7 @@ const EditBio = () => {
       {/* partner age */}
       <Form.Item
         label="Expected Partner Age"
-        name="partner-age"
+        name="partner_age"
         rules={[
           {
             required: true,
@@ -380,11 +405,11 @@ const EditBio = () => {
           },
         ]}
       >
-        <Slider range min={18} max={70} defaultValue={[18, 70]} />
+        <Slider range min={18} max={70} />
       </Form.Item>
       {/*partner height */}
       <Form.Item
-        name="partner-height"
+        name="partner_height"
         label="Expected Partner Height"
         rules={[
           {
@@ -393,11 +418,11 @@ const EditBio = () => {
           },
         ]}
       >
-        <Input variant="filled" placeholder="5'1''- 5'10''" />
+        <Input size="large" placeholder="5'1''- 5'10''" />
       </Form.Item>
       {/*partner weight */}
       <Form.Item
-        name="partner-weight"
+        name="partner_weight"
         label="Expected Partner Weight"
         rules={[
           {
@@ -406,11 +431,11 @@ const EditBio = () => {
           },
         ]}
       >
-        <Input variant="filled" placeholder="30kg - 40kg" />
+        <Input size="large" placeholder="30kg - 40kg" />
       </Form.Item>
       {/* contact email */}
       <Form.Item label="Contact Email" name="email" required>
-        <Input variant="filled" disabled />
+        <Input size="large" disabled />
       </Form.Item>
       {/* mobile number */}
       <Form.Item
@@ -424,13 +449,15 @@ const EditBio = () => {
         name="invoice"
         required
       >
-        <Input variant="filled" type="text" />
+        <Input size="large" type="text" />
       </Form.Item>
 
       <Form.Item>
         <Button
-          type="primary"
           style={{ marginInline: "17%" }}
+          type="primary"
+          size="large"
+          shape="round"
           htmlType="submit"
         >
           Save and Publish

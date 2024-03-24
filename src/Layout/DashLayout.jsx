@@ -1,4 +1,5 @@
 import {
+  AppstoreTwoTone,
   EditTwoTone,
   FileTextTwoTone,
   HeartTwoTone,
@@ -8,6 +9,8 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { Header } from "antd/es/layout/layout";
+import Title from "antd/es/typography/Title";
+import { key, keys } from "localforage";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 const { Content, Sider } = Layout;
@@ -31,31 +34,36 @@ const DashLayout = () => {
       >
         <Menu
           mode="inline"
+          selectedKeys={keys}
           style={{
             position: "sticky",
             top: 105,
             zIndex: 2,
             overflow: "hidden",
           }}
-          defaultSelectedKeys={"1"}
           items={[
             {
               key: "1",
+              icon: <AppstoreTwoTone twoToneColor="#eb2f96" />,
+              label: <Link to="">Dashboard</Link>,
+            },
+            {
+              key: "2",
               icon: <EditTwoTone twoToneColor="#eb2f96" />,
               label: <Link to="edit-biodata">Edit Biodata</Link>,
             },
             {
-              key: "2",
+              key: "3",
               icon: <FileTextTwoTone twoToneColor="#eb2f96" />,
               label: <Link to="view-biodata">View Biodata</Link>,
             },
             {
-              key: "3",
+              key: "4",
               icon: <PullRequestOutlined style={{ color: "#eb2f96" }} />,
               label: <Link to="my-contact-request">My Contact Request</Link>,
             },
             {
-              key: "4",
+              key: "5",
               icon: <HeartTwoTone twoToneColor="#eb2f96" />,
               label: <Link to="fav-biodata">Favourite Biodata</Link>,
             },
@@ -67,7 +75,6 @@ const DashLayout = () => {
           style={{
             padding: 0,
             background: colorBgContainer,
-
             position: "sticky",
             top: 105,
             zIndex: 2,
@@ -84,7 +91,7 @@ const DashLayout = () => {
               height: 50,
             }}
           />
-         
+          Dashboard
         </Header>
         <Content
           style={{
@@ -95,7 +102,7 @@ const DashLayout = () => {
             style={{
               padding: 24,
               minHeight: "65vh",
-              background: colorBgContainer,
+              background: "#FFF8FC",
               borderRadius: borderRadiusLG,
             }}
           >

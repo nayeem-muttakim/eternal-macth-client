@@ -2,11 +2,11 @@
 .item {
   width: 300px;
 }
-#form-container2 {
+#form-container {
   padding: 8px;
 }
 @media screen and (min-width: 600px) {
-  #form-container2 {
+  #form-container {
     padding-block: 25px;
     padding-inline: 20px;
   }

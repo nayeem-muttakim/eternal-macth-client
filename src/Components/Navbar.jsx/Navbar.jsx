@@ -99,7 +99,7 @@ function Navbar() {
               </Popover>
             ) : (
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <Link to="SignIn" style={{ textDecoration: "none" }}>
+                <Link to="signIn" style={{ textDecoration: "none" }}>
                   <Button size="large" id="signIn">
                     Sign in
                   </Button>

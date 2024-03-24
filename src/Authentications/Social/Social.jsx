@@ -18,23 +18,21 @@ const Social = () => {
   const to = location?.state?.from?.pathname || "/";
 
   const handleGoogle = async () => {
-    const toasted = toast.loading("Signing In");
-
     googleSignIn()
       .then((res) => {
         const userInfo = {
           email: res?.user?.email,
           name: res?.user?.displayName,
           role: "user",
-          membership:false
+          membership: false,
         };
         axiosPublic.post("/users", userInfo).then((res) => {
-          toast.success("Signed In", { id: toasted });
+          toast.success("Signed In");
           navigate(to);
         });
       })
       .catch((err) => {
-        toast.error("Invalid User", { id: toasted });
+        toast.error("Invalid User");
       });
   };
 
@@ -45,10 +43,10 @@ const Social = () => {
         id="button"
         shape="round"
         style={{
-          width: "350px",
           paddingTop: 12,
           paddingBottom: 40,
           border: 0,
+          
         }}
         onClick={handleGoogle}
       >

@@ -8,6 +8,7 @@ import HomePage from "../Components/HomePage";
 import DashLayout from "../Layout/DashLayout";
 import EditBio from "../DashBoard/EditBio/EditBio";
 import PrivateRoute from "../Private/PrivateRoute";
+import ViewBio from "../DashBoard/ViewBio/ViewBio";
 
 export const MainROutes = createBrowserRouter([
   {
@@ -20,11 +21,23 @@ export const MainROutes = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/SignIn",
+        path: "/signIn",
         element: <SignIn />,
       },
       {
-        path: "/SignUp",
+        path: "/signUp",
+        element: <SignUp />,
+      },
+      {
+        path: "/bio-datas",
+        element: <SignUp />,
+      },
+      {
+        path: "/about-us",
+        element: <SignUp />,
+      },
+      {
+        path: "/contact-us",
         element: <SignUp />,
       },
       {
@@ -38,6 +51,10 @@ export const MainROutes = createBrowserRouter([
           {
             path: "edit-biodata",
             element: <EditBio />,
+          },
+          {
+            path: "view-biodata",
+            element: <ViewBio />,
           },
         ],
       },

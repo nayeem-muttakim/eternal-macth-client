@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
-  // baseURL:'https://eternal-match-server.vercel.app'
+  // baseURL: "http://localhost:3000",
+  baseURL: "https://eternal-match-server.vercel.app",
 });
 const useAxiosSecure = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const useAxiosSecure = () => {
       // logout user and navigate to login
       if (status === 401 || status === 403) {
         await logOut();
-        navigate("/SignIn");
+        navigate("/signIn");
       }
       return Promise.reject(error);
     }
