@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Descriptions } from "antd";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const ViewBio = () => {
   const axiosSecure = useAxiosSecure();
@@ -84,20 +85,25 @@ const ViewBio = () => {
     },
   ];
   return (
-    <Descriptions
-      style={{ maxWidth: 700, marginInline: "auto" }}
-      title="My Biodata"
-      bordered
-      column={{
-        xs: 1,
-        sm: 1,
-        md: 1,
-        lg: 1,
-        xl: 1,
-        xxl: 1,
-      }}
-      items={items}
-    />
+    <>
+      <Helmet>
+        <title>Eternal Match | View Biodata</title>
+      </Helmet>
+      <Descriptions
+        style={{ maxWidth: 700, marginInline: "auto" }}
+        title="My Biodata"
+        bordered
+        column={{
+          xs: 1,
+          sm: 1,
+          md: 1,
+          lg: 1,
+          xl: 1,
+          xxl: 1,
+        }}
+        items={items}
+      />
+    </>
   );
 };
 export default ViewBio;

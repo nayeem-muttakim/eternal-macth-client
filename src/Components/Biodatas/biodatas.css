@@ -1,32 +1,33 @@
-#counter {
+#biodatas {
   display: grid;
   gap: 15px;
-  margin-block: 10px;
-  padding-inline: 12%;
+  margin: 10px;
 }
-.card {
-  background-color: #fff0f3;
+.bio-card {
+  background-color: #fff8fc;
   transition: 0.5s ease;
+  width: 300px;
+  margin: auto;
 }
-.card:hover {
+.bio-card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 @media screen and (min-width: 700px) {
-  #counter {
+  #biodatas {
     grid-template-columns: repeat(2, 1fr);
-    padding-inline: 10%;
   }
 }
 
 @media screen and (min-width: 1000px) {
-  #counter {
+  #biodatas {
     grid-template-columns: repeat(3, 1fr);
-    padding-inline: 3%;
+  }
+  .bio-card {
+    width: 400px;
   }
 }
 @media screen and (min-width: 1250px) {
-  #counter {
+  #biodatas {
     grid-template-columns: repeat(4, 1fr);
-    padding-inline: 15%;
   }
 }

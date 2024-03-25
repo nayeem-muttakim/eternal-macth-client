@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import "./signup.css";
 import Social from "../Social/Social";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -60,6 +61,9 @@ const SignUp = () => {
         minHeight: "90vh",
       }}
     >
+      <Helmet>
+        <title>Eternal Match | Sign up</title>
+      </Helmet>
       <div
         id="form-container"
         style={{

@@ -12,6 +12,7 @@ import { Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { key, keys } from "localforage";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, Outlet } from "react-router-dom";
 const { Content, Sider } = Layout;
 
@@ -32,6 +33,9 @@ const DashLayout = () => {
         collapsible
         collapsed={collapsed}
       >
+        <Helmet>
+          <title>Eternal Match | Dashboard</title>
+        </Helmet>
         <Menu
           mode="inline"
           selectedKeys={keys}
@@ -59,14 +63,15 @@ const DashLayout = () => {
             },
             {
               key: "4",
-              icon: <PullRequestOutlined style={{ color: "#eb2f96" }} />,
-              label: <Link to="my-contact-request">My Contact Request</Link>,
-            },
-            {
-              key: "5",
               icon: <HeartTwoTone twoToneColor="#eb2f96" />,
               label: <Link to="fav-biodata">Favourite Biodata</Link>,
             },
+            {
+              key: "5",
+              icon: <PullRequestOutlined style={{ color: "#eb2f96" }} />,
+              label: <Link to="my-contact-request">My Contact Request</Link>,
+            },
+          
           ]}
         />
       </Sider>

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const EditBio = () => {
   const { user } = useAuth();
@@ -90,6 +91,9 @@ const EditBio = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+        <Helmet>
+        <title>Eternal Match | Edit Biodata</title>
+      </Helmet>
       {/* biodata type */}
       <Form.Item
         name="type"

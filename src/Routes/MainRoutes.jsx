@@ -9,6 +9,11 @@ import DashLayout from "../Layout/DashLayout";
 import EditBio from "../DashBoard/EditBio/EditBio";
 import PrivateRoute from "../Private/PrivateRoute";
 import ViewBio from "../DashBoard/ViewBio/ViewBio";
+import Biodatas from "../Components/Biodatas/Biodatas";
+import BioDetails from "../Components/Biodatas/BioDetails";
+import FavBio from "../DashBoard/FavBio/FavBio";
+import AboutUs from "../Components/AboutUs/AboutUs";
+import ContactUs from "../Components/ContactUs/ContactUs";
 
 export const MainROutes = createBrowserRouter([
   {
@@ -30,15 +35,19 @@ export const MainROutes = createBrowserRouter([
       },
       {
         path: "/bio-datas",
-        element: <SignUp />,
+        element: <Biodatas />,
+      },
+      {
+        path: "/bio-data/:id",
+        element: <BioDetails />,
       },
       {
         path: "/about-us",
-        element: <SignUp />,
+        element: <AboutUs />,
       },
       {
         path: "/contact-us",
-        element: <SignUp />,
+        element: <ContactUs />,
       },
       {
         path: "/dashboard",
@@ -55,6 +64,10 @@ export const MainROutes = createBrowserRouter([
           {
             path: "view-biodata",
             element: <ViewBio />,
+          },
+          {
+            path: "fav-biodata",
+            element: <FavBio />,
           },
         ],
       },

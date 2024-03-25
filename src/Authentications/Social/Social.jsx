@@ -14,9 +14,7 @@ const Social = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
-
   const to = location?.state?.from?.pathname || "/";
-
   const handleGoogle = async () => {
     googleSignIn()
       .then((res) => {
@@ -46,7 +44,6 @@ const Social = () => {
           paddingTop: 12,
           paddingBottom: 40,
           border: 0,
-          
         }}
         onClick={handleGoogle}
       >

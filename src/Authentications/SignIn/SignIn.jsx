@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import "./signin.css";
 import Social from "../Social/Social";
+import { Helmet } from "react-helmet-async";
 const { Title, Text } = Typography;
 const formItemLayout = {
   labelCol: {
@@ -48,6 +49,9 @@ const SignIn = () => {
         minHeight: "90vh",
       }}
     >
+      <Helmet>
+        <title>Eternal Match | Sign in</title>
+      </Helmet>
       <div
         id="form-container2"
         style={{

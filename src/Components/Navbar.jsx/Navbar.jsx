@@ -72,6 +72,7 @@ function Navbar() {
           <div id="menu">
             {user ? (
               <Popover
+              trigger={'click'}
                 content={
                   <Menu
                     style={{

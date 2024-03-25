@@ -12,18 +12,18 @@ const Process = () => {
       <Title level={1}>How our website works</Title>
       <div id="process">
         <Card className="card">
-          <img src={create} />
+          <img src={create} style={{ marginInline: "auto" }} />
           <Title level={3}>Create Biodata</Title>
           <p>Create a biodata easily without any cost</p>
         </Card>
         <Card className="card">
-          <img src={search} />
+          <img src={search} style={{ marginInline: "auto" }} />
           <Title level={3}>Search Biodata</Title>
           <p>Search biodata by filtering by age , biodata type and division</p>
         </Card>
 
         <Card className="card">
-          <img src={connect} />
+          <img src={connect} style={{ marginInline: "auto" }} />
           <Title level={3}>Connect</Title>
           <p>
             If someone likes your biodata or you like someone's biodata, you can
@@ -31,7 +31,7 @@ const Process = () => {
           </p>
         </Card>
         <Card className="card">
-          <img src={interact} />
+          <img src={interact} style={{ marginInline: "auto" }} />
           <Title level={3}>Get Married</Title>
           <p>
             If you like biodata and the person,you can move forward after taking
