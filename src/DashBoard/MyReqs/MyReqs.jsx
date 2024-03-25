@@ -8,23 +8,24 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Button, Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 
-const FavBio = () => {
+const MyReqs = () => {
   const { user } = useAuth();
 
   const axiosSecure = useAxiosSecure();
-  const { data: myFav = [], refetch } = useQuery({
-    queryKey: [user?.email, "myFav"],
+  const { data: MyReqs = [], refetch } = useQuery({
+    queryKey: [user?.email, "MyReqs"],
     queryFn: async () => {
-      const res = await axiosSecure(`/favourites/mine?user=${user?.email}`);
+      const res = await axiosSecure(`/requests/mine?user=${user?.email}`);
       return res.data;
     },
   });
-  const data = useMemo(() => myFav, []);
+  //   console.log(MyReqs);
+  const data = useMemo(() => MyReqs, []);
 
   /** @type import("@tanstack/react-table").ColumnDef<any>*/
   const columns = [
@@ -33,10 +34,13 @@ const FavBio = () => {
       header: "Name",
     },
     {
-      header: "Permanent Division",
+      header: "Status",
     },
     {
-      header: "Occupation",
+      header: "Mobile no",
+    },
+    {
+      header: "Email",
     },
 
     {
@@ -50,9 +54,9 @@ const FavBio = () => {
   });
 
   const handleDelete = (fav) => {
-    axiosSecure.delete(`/favourites/${fav._id}`).then((res) => {
+    axiosSecure.delete(`/requests/${fav._id}`).then((res) => {
       if (res.data.deletedCount) {
-        toast.success("Biodata Removed");
+        toast.success("Request Removed");
         refetch();
       }
     });
@@ -61,7 +65,7 @@ const FavBio = () => {
   return (
     <div className="w3-container">
       <Helmet>
-        <title>Eternal Match | Favourites</title>
+        <title>Eternal Match | My Contact Requests</title>
       </Helmet>
       <TableContainer className="w3-responsive">
         <Table className="w3-table-all">
@@ -80,16 +84,22 @@ const FavBio = () => {
             ))}
           </Thead>
           <Tbody>
-            {myFav.map((fav) => (
+            {MyReqs.map((fav) => (
               <>
                 <Tr key={fav?._id}>
                   <Th>{fav?.bioId}</Th>
                   <Th>{fav?.name}</Th>
-                  <Th>{fav?.permanent_division}</Th>
+                  <Th>{!fav?.status ? "Pending" : "Approved"}</Th>
 
-                  <Th>{fav?.occupation}</Th>
+                  <th style={{ textAlign: "left" }}>
+                    {!fav?.status ? "Pending" : fav?.invoice}
+                  </th>
+                  <th style={{ textAlign: "left" }}>
+                    {!fav?.status ? "Pending" : fav?.email}
+                  </th>
                   <Th>
                     <Popconfirm
+                      icon={<QuestionCircleOutlined style={{ color: "red" }} />}
                       title="Sure to delete?"
                       onConfirm={() => handleDelete(fav)}
                     >
@@ -108,4 +118,4 @@ const FavBio = () => {
   );
 };
 
-export default FavBio;
+export default MyReqs;

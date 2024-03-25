@@ -14,6 +14,7 @@ import BioDetails from "../Components/Biodatas/BioDetails";
 import FavBio from "../DashBoard/FavBio/FavBio";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import ContactUs from "../Components/ContactUs/ContactUs";
+import MyReqs from "../DashBoard/MyReqs/MyReqs";
 
 export const MainROutes = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ export const MainROutes = createBrowserRouter([
       },
       {
         path: "/bio-datas",
-        element: <Biodatas />,
+        element: (
+          <PrivateRoute>
+            <Biodatas />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/bio-data/:id",
@@ -68,6 +73,10 @@ export const MainROutes = createBrowserRouter([
           {
             path: "fav-biodata",
             element: <FavBio />,
+          },
+          {
+            path: "my-contact-request",
+            element: <MyReqs />,
           },
         ],
       },

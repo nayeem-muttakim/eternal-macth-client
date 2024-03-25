@@ -22,8 +22,10 @@ const BioDetails = () => {
   const name = Biodata?.name;
   const bioId = Biodata?.id;
   const permanent_division = Biodata?.permanent_division;
+  const invoice = Biodata?.invoice;
+  const email = Biodata?.email;
   const occupation = Biodata?.occupation;
-
+  const status = false;
   const favBio = {
     name,
     bioId,
@@ -37,6 +39,27 @@ const BioDetails = () => {
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Added To Favourites");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const reqInfos = {
+    name,
+    bioId,
+    status,
+    invoice,
+    email,
+    user: user?.email,
+  };
+  const reqInfo = () => {
+    axiosSecure
+      .post("/request-info", reqInfos)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Request Sent");
         }
       })
       .catch((err) => {
@@ -121,7 +144,10 @@ const BioDetails = () => {
               />
             </Popover>
 
-            <Button icon={<PullRequestOutlined style={{ color: "#eb2f96" }} />}>
+            <Button
+              onClick={reqInfo}
+              icon={<PullRequestOutlined style={{ color: "#eb2f96" }} />}
+            >
               Request Contact Info
             </Button>
           </div>
