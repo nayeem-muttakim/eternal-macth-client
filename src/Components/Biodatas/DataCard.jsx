@@ -13,7 +13,8 @@ const DataCard = ({ biodata }) => {
       }
     >
       <p>Biodata Type : {biodata?.type}</p>
-      <p>Perment Address : {biodata?.permanent_division}</p>
+      <p>Present Division : {biodata?.present_division}</p>
+      <p>Permanent Division : {biodata?.permanent_division}</p>
       <p>Age : {biodata?.age}</p>
       <p>Occupation : {biodata?.occupation}</p>
     </Card>

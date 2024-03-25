@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
+import dashboard from "./../assets/dashboard.json";
 
 import SignIn from "../Authentications/SignIn/SignIn";
 import MainLayout from "../Layout/MainLayout";
@@ -15,6 +16,7 @@ import FavBio from "../DashBoard/FavBio/FavBio";
 import AboutUs from "../Components/AboutUs/AboutUs";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import MyReqs from "../DashBoard/MyReqs/MyReqs";
+import Lottie from "lottie-react";
 
 export const MainROutes = createBrowserRouter([
   {
@@ -62,6 +64,12 @@ export const MainROutes = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+          {
+            path: "",
+            element: (
+              <Lottie style={{ height: 600 }} animationData={dashboard} />
+            ),
+          },
           {
             path: "edit-biodata",
             element: <EditBio />,

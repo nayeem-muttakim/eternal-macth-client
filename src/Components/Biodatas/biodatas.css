@@ -22,12 +22,12 @@
   #biodatas {
     grid-template-columns: repeat(3, 1fr);
   }
-  .bio-card {
-    width: 400px;
-  }
 }
 @media screen and (min-width: 1250px) {
   #biodatas {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .bio-card {
+    width: 400px;
   }
 }
